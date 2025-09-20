@@ -362,7 +362,7 @@ export default function AboutPage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4"
+              className="border-white  hover:bg-white text-gray-800 px-8 py-4"
             >
               Learn More
             </Button>

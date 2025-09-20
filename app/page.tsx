@@ -21,6 +21,7 @@ import {
   Target,
   Award,
 } from "lucide-react";
+import Header from "@/components/header";
 
 const Button = ({
   children,
@@ -72,18 +73,6 @@ const CardContent = ({ children, className = "", ...props }) => (
   </div>
 );
 
-const CardHeader = ({ children, className = "", ...props }) => (
-  <div className={`px-6 pt-6 ${className}`} {...props}>
-    {children}
-  </div>
-);
-
-const CardTitle = ({ children, className = "", ...props }) => (
-  <h3 className={`text-xl font-bold ${className}`} {...props}>
-    {children}
-  </h3>
-);
-
 const Badge = ({ children, className = "", ...props }) => (
   <span
     className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${className}`}
@@ -93,130 +82,7 @@ const Badge = ({ children, className = "", ...props }) => (
   </span>
 );
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-lg shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
-              <Coffee className="w-6 h-6 text-white" />
-            </div>
-            <span
-              className={`text-2xl font-bold ${
-                isScrolled ? "text-gray-800" : "text-white"
-              }`}
-            >
-              Clix Coffee <span className="text-orange-500">Pro</span>
-            </span>
-          </div>
-
-          <div className="hidden lg:flex items-center space-x-8">
-            <a
-              href="#features"
-              className={`hover:text-orange-500 transition-colors ${
-                isScrolled ? "text-gray-600" : "text-white"
-              }`}
-            >
-              Features
-            </a>
-            <a
-              href="#financial"
-              className={`hover:text-orange-500 transition-colors ${
-                isScrolled ? "text-gray-600" : "text-white"
-              }`}
-            >
-              Financial
-            </a>
-            <a
-              href="#process"
-              className={`hover:text-orange-500 transition-colors ${
-                isScrolled ? "text-gray-600" : "text-white"
-              }`}
-            >
-              Process
-            </a>
-            <a
-              href="#contact"
-              className={`hover:text-orange-500 transition-colors ${
-                isScrolled ? "text-gray-600" : "text-white"
-              }`}
-            >
-              Contact
-            </a>
-            <Button size="sm">Get Started</Button>
-          </div>
-
-          <button
-            className="lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X
-                className={`w-6 h-6 ${
-                  isScrolled ? "text-gray-800" : "text-white"
-                }`}
-              />
-            ) : (
-              <Menu
-                className={`w-6 h-6 ${
-                  isScrolled ? "text-gray-800" : "text-white"
-                }`}
-              />
-            )}
-          </button>
-        </div>
-
-        {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-lg rounded-b-2xl">
-            <div className="px-4 py-6 space-y-4">
-              <a
-                href="#features"
-                className="block text-gray-600 hover:text-orange-500"
-              >
-                Features
-              </a>
-              <a
-                href="#financial"
-                className="block text-gray-600 hover:text-orange-500"
-              >
-                Financial
-              </a>
-              <a
-                href="#process"
-                className="block text-gray-600 hover:text-orange-500"
-              >
-                Process
-              </a>
-              <a
-                href="#contact"
-                className="block text-gray-600 hover:text-orange-500"
-              >
-                Contact
-              </a>
-              <Button className="w-full">Get Started</Button>
-            </div>
-          </div>
-        )}
-      </nav>
-    </header>
-  );
-};
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
